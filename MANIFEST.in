@@ -1,1 +1,3 @@
 include README.md
+recursive-include redis_status/templates/redis_status *
+recursive-include redis_status/templatetags *
