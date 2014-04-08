@@ -5,5 +5,12 @@ This app is a clone of [django-memcache-status](https://github.com/bartTC/django
 #Notes
 This app requires a redis cache backend. I recommend [django-redis-cache](https://github.com/sebleier/django-redis-cache).
 
+#Installation
+`django-redis-status` can be installed via pip.
+
+```
+pip install django-redis-status
+```
+
 #Usage
-Add redis_status to your installed apps.
+Add `redis_status` to your `INSTALLED_APPS`.
