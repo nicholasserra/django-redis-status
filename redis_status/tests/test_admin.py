@@ -16,3 +16,13 @@ class RedisStatusSanityTests(TestCase):
     def test_cache_stats_included(self):
         response = self.client.get('/admin/')
         self.assertIn('class="cache_stats"', response.content)
+
+
+class RedisStatusPermissionsTests(TestCase):
+    urls = 'redis_status.tests.test_urls'
+
+    def test_non_superuser_cant_see_stats(self):
+        self.user = User.objects.create_user('test', 'test@test.com', 'password')
+        self.client.login(username=self.user.username, password='password')
+        response = self.client.get('/admin/')
+        self.assertNotIn('class="cache_stats"', response.content)
