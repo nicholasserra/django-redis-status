@@ -14,3 +14,6 @@ pip install django-redis-status
 
 #Usage
 Add `redis_status` to your `INSTALLED_APPS`.
+
+#Compatibility
+`django-redis-status` is compatible with Django 1.3 through 1.6.
