@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/nicholasserra/django-redis-status.svg?branch=master)](https://travis-ci.org/nicholasserra/django-redis-status)
+
 #Overview
 This app is a clone of [django-memcache-status](https://github.com/bartTC/django-memcache-status) modified to work with Redis. This app displays some statistics for your redis instance in the index view of your Django admin section.
 
