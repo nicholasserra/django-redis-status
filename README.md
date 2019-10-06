@@ -1,21 +1,21 @@
 [![Build Status](https://travis-ci.org/nicholasserra/django-redis-status.svg?branch=master)](https://travis-ci.org/nicholasserra/django-redis-status)
 
-#Overview
+# Overview
 This app is a clone of [django-memcache-status](https://github.com/bartTC/django-memcache-status) modified to work with Redis. This app displays some statistics for your redis instance in the index view of your Django admin section.
 
 
-#Notes
+# Notes
 This app requires a redis cache backend. I recommend [django-redis-cache](https://github.com/sebleier/django-redis-cache).
 
-#Installation
+# Installation
 `django-redis-status` can be installed via pip.
 
 ```
 pip install django-redis-status
 ```
 
-#Usage
+# Usage
 Add `redis_status` to your `INSTALLED_APPS`.
 
-#Compatibility
+# Compatibility
 `django-redis-status` is compatible with Django 1.3 through 1.6.
