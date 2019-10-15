@@ -55,13 +55,15 @@ div.cache_graph_value{
 
 {% block content %}
     {% get_cache_stats %}
-    {% if cache_stats and user.is_superuser %}
+    {% if cache_servers and user.is_superuser %}
     <div class="cache_stats">
+
+    {% for cache_stats in cache_servers %}
     <div class="module">
         <table>
         <caption>
             <a href="#" class="section" onclick="
-                var elem = document.getElementById('cache_block');
+                var elem = document.getElementById('cache_block{{ forloop.counter }}');
                 if(elem.style.display == 'none'){
                     elem.style.display = 'table-row-group';
                 }else{
@@ -70,7 +72,7 @@ div.cache_graph_value{
                 return false;
             ">redis: {{ cache_stats.server }} - {{ cache_stats.used_memory }} bytes used</a>
         </caption>
-        <tbody id="cache_block">
+        <tbody id="cache_block{{ forloop.counter }}">
         <tr>
             <th>{% trans "Miss Ratio" %}</th>
             <td>
@@ -83,13 +85,12 @@ div.cache_graph_value{
         <tr>
             <th>{% trans "Avg GET by item" %}</th>
             <td>{% widthratio cache_stats.keyspace_hits cache_stats.total_keys 1 %}</td>
-        </tr>        
+        </tr>
         <tr>
             <th>{% trans "Avg GET by seconds/minutes" %}</th>
             <td>{% widthratio cache_stats.keyspace_hits cache_stats.uptime_in_seconds 1 %}/{% widthratio cache_stats.keyspace_hits cache_stats.uptime_in_seconds 60 %}</td>
         </tr>
-        
-        
+
         {# ----- Detailed Statistics ----- #}
         <tr><th class="cache_title" colspan="2">{% trans "Detailed Statistics:" %}</th></tr>
         {% for k,v in cache_stats.items %}
@@ -98,6 +99,8 @@ div.cache_graph_value{
         </tbody>
         </table>
     </div>
+    {% endfor %}
+
     </div>
     {% endif %}
 

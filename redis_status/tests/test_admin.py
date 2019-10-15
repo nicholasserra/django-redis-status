@@ -3,8 +3,6 @@ from django.test import TestCase
 
 
 class RedisStatusSanityTests(TestCase):
-    urls = 'redis_status.tests.test_urls'
-
     def setUp(self):
         self.user = User.objects.create_superuser('test', 'test@test.com', 'password')
         self.client.login(username=self.user.username, password='password')
@@ -19,8 +17,6 @@ class RedisStatusSanityTests(TestCase):
 
 
 class RedisStatusPermissionsTests(TestCase):
-    urls = 'redis_status.tests.test_urls'
-
     def test_non_superuser_cant_see_stats(self):
         self.user = User.objects.create_user('test', 'test@test.com', 'password')
         self.client.login(username=self.user.username, password='password')

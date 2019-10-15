@@ -2,11 +2,11 @@ from setuptools import setup, find_packages
 
 setup(
     name='django-redis-status',
-    version='1.0.0',
+    version='1.0.1',
     description='A django application that displays some statistics about your redis instance in the admin.',
     long_description=open('README.md').read(),
     author='Nicholas Serra',
-    author_email='nick@528hazelwood.com',
+    author_email='nickserra@gmail.com',
     url='https://github.com/nicholasserra/django-redis-status',
     packages=find_packages(exclude=[]),
     include_package_data=True,
