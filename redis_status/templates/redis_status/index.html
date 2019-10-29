@@ -72,7 +72,7 @@ div.cache_graph_value{
                 return false;
             ">redis: {{ cache_stats.server }} - {{ cache_stats.used_memory }} bytes used</a>
         </caption>
-        <tbody id="cache_block{{ forloop.counter }}">
+        <tbody id="cache_block{{ forloop.counter }}" style="display: none;">
         <tr>
             <th>{% trans "Miss Ratio" %}</th>
             <td>

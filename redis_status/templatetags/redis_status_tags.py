@@ -18,7 +18,7 @@ class CacheStats(template.Node):
 
                 # count database keys
                 # thank you http://stackoverflow.com/a/4559015
-                databases = dict(filter(lambda item: item[0].startswith('db'), cache_stats_item.iteritems()))
+                databases = dict(filter(lambda item: item[0].startswith('db'), cache_stats_item.items()))
 
                 cache_stats_item['total_keys'] = sum([vals['keys'] for db, vals in databases.items()])
                 cache_stats_item['server'] = '{}:{}'.format(
