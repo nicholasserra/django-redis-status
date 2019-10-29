@@ -15,6 +15,7 @@ if not settings.configured:
             'django.contrib.admin',
             'django.contrib.auth',
             'django.contrib.contenttypes',
+            'django.contrib.messages',
             'django.contrib.sessions',
             'redis_status',
         ),
@@ -36,6 +37,7 @@ if not settings.configured:
             'django.middleware.common.CommonMiddleware',
             'django.middleware.csrf.CsrfViewMiddleware',
             'django.contrib.auth.middleware.AuthenticationMiddleware',
+            'django.contrib.messages.middleware.MessageMiddleware',
         ],
         TEMPLATES = [
             {
@@ -43,9 +45,10 @@ if not settings.configured:
                 'APP_DIRS': True,
                 'OPTIONS': {
                     'context_processors': [
-                        "django.contrib.auth.context_processors.auth",
-                        "django.template.context_processors.media",
-                        "django.template.context_processors.static",
+                        'django.contrib.auth.context_processors.auth',
+                        'django.contrib.messages.context_processors.messages',
+                        'django.template.context_processors.media',
+                        'django.template.context_processors.static',
                     ]
                 },
             },
