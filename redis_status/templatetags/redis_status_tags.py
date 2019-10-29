@@ -9,20 +9,30 @@ class CacheStats(template.Node):
     if no cache stats supported.
     """
     def render(self, context):
+        servers = []
+
         try:
-            cache_stats = cache._client.info()
+            for cache_client in cache.client_list:
 
-            #count database keys
-            #thank you http://stackoverflow.com/a/4559015
-            databases = dict(filter(lambda item: item[0].startswith('db'),cache_stats.iteritems()))
+                cache_stats_item = cache_client.info()
 
-            cache_stats['total_keys'] = sum([vals['keys'] for db, vals in databases.items()])
-            cache_stats['server'] = cache._server
+                # count database keys
+                # thank you http://stackoverflow.com/a/4559015
+                databases = dict(filter(lambda item: item[0].startswith('db'), cache_stats_item.items()))
+
+                cache_stats_item['total_keys'] = sum([vals['keys'] for db, vals in databases.items()])
+                cache_stats_item['server'] = '{}:{}'.format(
+                    cache_client.connection_pool.connection_kwargs['host'], cache_client.connection_pool.connection_kwargs['port']
+                )
+
+                servers.append(cache_stats_item)
 
         # The current cache backend does not provide any statistics
         except AttributeError:
-            cache_stats = None
-        context['cache_stats'] = cache_stats
+            pass
+
+        context['cache_servers'] = servers
+
         return ''
 
 @register.tag

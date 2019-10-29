@@ -19,3 +19,11 @@ dist
 *.pyc
 *.pyo
 *.tmp*
+
+# virtualenv
+.venv
+venv/
+ENV/
+
+# pyenv
+.python-version

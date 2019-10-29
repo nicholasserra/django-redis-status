@@ -15,10 +15,11 @@ if not settings.configured:
             'django.contrib.admin',
             'django.contrib.auth',
             'django.contrib.contenttypes',
+            'django.contrib.messages',
             'django.contrib.sessions',
             'redis_status',
         ),
-        ROOT_URLCONF=None,
+        ROOT_URLCONF='redis_status.tests.test_urls',
         SECRET_KEY='foobar',
         CACHES = {
             'default': {
@@ -30,7 +31,28 @@ if not settings.configured:
                     'MIN_COMPRESSION_LEN': 102400,
                 },
             }
-        }
+        },
+        MIDDLEWARE = [
+            'django.contrib.sessions.middleware.SessionMiddleware',
+            'django.middleware.common.CommonMiddleware',
+            'django.middleware.csrf.CsrfViewMiddleware',
+            'django.contrib.auth.middleware.AuthenticationMiddleware',
+            'django.contrib.messages.middleware.MessageMiddleware',
+        ],
+        TEMPLATES = [
+            {
+                'BACKEND': 'django.template.backends.django.DjangoTemplates',
+                'APP_DIRS': True,
+                'OPTIONS': {
+                    'context_processors': [
+                        'django.contrib.auth.context_processors.auth',
+                        'django.contrib.messages.context_processors.messages',
+                        'django.template.context_processors.media',
+                        'django.template.context_processors.static',
+                    ]
+                },
+            },
+        ]
     )
 
 
